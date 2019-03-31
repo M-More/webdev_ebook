@@ -41,6 +41,15 @@ a:hover{
   padding-right: 40px;
 }
 
+#subtitle{
+  font-size: 20px;
+  float: left;
+  color: #409EFF;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+}
+
 .menuitem{
   float: right;
 }
@@ -68,4 +77,9 @@ a:hover{
 
 #a_reg a{
   text-decoration: none;
+}
+
+#sumprice{
+  padding-right: 50px;
+  float: right;
 }

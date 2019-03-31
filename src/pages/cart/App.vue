@@ -3,7 +3,7 @@
     <div id="heading">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <p id="title">e-Book</p>
-        <p id="subtitle">书籍列表</p>
+        <p id="subtitle">购物车</p>
         <el-button type="text" class="head_nav_button"><a href="#">退出登录</a></el-button>
         <el-button type="text" class="head_nav_button"><a href="#">我的订单</a></el-button>
         <el-button type="text" class="head_nav_button"><a href="#">购物车</a></el-button>
@@ -12,14 +12,6 @@
     </div>
 
     <br/>
-
-    <el-input
-      v-model="search"
-      size="medium"
-      clearable
-      placeholder="输入书名关键字搜索书籍">
-      <i slot="prefix" class="el-input__icon el-icon-search"></i>
-    </el-input>
 
     <el-table
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
@@ -34,16 +26,17 @@
         prop="name">
       </el-table-column>
       <el-table-column
-        label="作者"
-        prop="author">
+        label="单价"
+        prop="price">
+      </el-table-column>
+      <el-table-column label="数量">
+        <template slot-scope="scope">
+          <el-input-number v-model="scope.row.amount" @change="handleChange(scope.row)" :min="1"></el-input-number>
+        </template>
       </el-table-column>
       <el-table-column
-        label="ISBN"
-        prop="isbn">
-      </el-table-column>
-      <el-table-column
-        label="库存"
-        prop="storage">
+        label="小计"
+        prop="sum">
       </el-table-column>
       <el-table-column
         align="right">
@@ -52,14 +45,19 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">详情</el-button>
-          <el-button
-            size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)">加入购物车</el-button>
+            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
+
+    <div id="summary">
+      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <div id="sumprice" style="float: right">
+        </div>
+      </el-menu>
+      <div class="line"></div>
+    </div>
   </div>
 </template>
 
@@ -69,53 +67,36 @@ export default {
     return {
       tableData: [{
         name: '解忧杂货店',
-        author: '[日]东野圭吾',
-        isbn: '9787544270878',
+        price: 23.9.toFixed(2),
+        amount: 1,
         cover: require('../../assets/images/list/1.jpg'),
-        storage: 1000
+        sum: 23.9.toFixed(2)
       }, {
         name: '摆渡人',
-        author: '[英]克莱儿·麦克福尔',
-        isbn: '9787550013247',
+        price: 22.9.toFixed(2),
+        amount: 1,
         cover: require('../../assets/images/list/2.jpg'),
-        storage: 1001
+        sum: 22.9.toFixed(2)
       }, {
         name: '人间失格',
-        author: '[日]太宰治',
-        isbn: '9787544270878',
+        price: 13.9.toFixed(2),
+        amount: 1,
         cover: require('../../assets/images/list/3.jpg'),
-        storage: 100
+        sum: 13.9.toFixed(2)
       }, {
         name: '月亮和六便士',
-        author: '[英]毛姆',
-        isbn: '9787544270878',
+        price: 34.9.toFixed(2),
+        amount: 1,
         cover: require('../../assets/images/list/4.jpg'),
-        storage: 999
-      }, {
-        name: '百年孤独',
-        author: '加西亚·马尔克斯',
-        isbn: '9787544291170',
-        cover: require('../../assets/images/list/5.jpg'),
-        storage: 994
-      }, {
-        name: '苏菲的世界',
-        author: '[挪威]乔斯坦·贾德',
-        isbn: '9787506394864',
-        cover: require('../../assets/images/list/6.jpg'),
-        storage: 995
-      }, {
-        name: '追风筝的人',
-        author: '[美]卡勒德·胡赛尼',
-        isbn: '9787208061644',
-        cover: require('../../assets/images/list/7.jpg'),
-        storage: 993
+        sum: 34.9.toFixed(2)
       }],
-      search: ''
+      search: '',
+      sum: 95
     }
   },
   methods: {
-    handleEdit (index, row) {
-      console.log(index, row)
+    handleChange: function (value) {
+      value.sum = (value.amount * value.price).toFixed(2)
     },
     handleDelete (index, row) {
       console.log(index, row)

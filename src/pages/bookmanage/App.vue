@@ -3,6 +3,7 @@
     <div id="heading">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <p id="title">e-Book</p>
+        <p id="subtitle">书籍管理</p>
         <el-button type="text" class="head_nav_button"><a href="#">退出登录</a></el-button>
         <el-button type="text" class="head_nav_button"><a href="#">订单统计</a></el-button>
         <el-button type="text" class="head_nav_button"><a href="#">书籍管理</a></el-button>
