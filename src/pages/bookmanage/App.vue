@@ -32,18 +32,22 @@
       </el-table-column>
       <el-table-column
         label="书名"
+        sortable
         prop="name">
       </el-table-column>
       <el-table-column
         label="作者"
+        sortable
         prop="author">
       </el-table-column>
       <el-table-column
         label="ISBN"
+        sortable
         prop="isbn">
       </el-table-column>
       <el-table-column
         label="库存"
+        sortable
         prop="storage">
       </el-table-column>
       <el-table-column

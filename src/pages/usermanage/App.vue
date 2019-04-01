@@ -27,6 +27,7 @@
       style="width: 100%">
       <el-table-column
         label="用户名"
+        sortable
         prop="name">
       </el-table-column>
       <el-table-column
