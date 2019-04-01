@@ -54,6 +54,7 @@
     <div id="summary">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <div id="sumprice" style="float: right">
+          <el-button type="primary">结算</el-button>
         </div>
       </el-menu>
       <div class="line"></div>

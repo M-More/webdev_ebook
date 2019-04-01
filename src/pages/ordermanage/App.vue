@@ -3,10 +3,11 @@
     <div id="heading">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <p id="title">e-Book</p>
-        <p id="subtitle">我的订单</p>
+        <p id="subtitle">订单统计</p>
         <el-button type="text" class="head_nav_button"><a href="#">退出登录</a></el-button>
-        <el-button type="text" class="head_nav_button"><a href="#">我的订单</a></el-button>
-        <el-button type="text" class="head_nav_button"><a href="#">购物车</a></el-button>
+        <el-button type="text" class="head_nav_button"><a href="#">订单统计</a></el-button>
+        <el-button type="text" class="head_nav_button"><a href="#">书籍管理</a></el-button>
+        <el-button type="text" class="head_nav_button"><a href="#">用户管理</a></el-button>
       </el-menu>
       <div class="line"></div>
     </div>
@@ -22,11 +23,15 @@
     </el-input>
 
     <el-table
-      :data="tableData.filter(data => !search || data.bookname.toLowerCase().includes(search.toLowerCase()))"
+      :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%">
       <el-table-column
         label="下单时间"
         prop="time">
+      </el-table-column>
+      <el-table-column
+        label="下单用户"
+        prop="username">
       </el-table-column>
       <el-table-column
         label="书名"

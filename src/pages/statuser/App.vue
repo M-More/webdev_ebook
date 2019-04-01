@@ -3,7 +3,7 @@
     <div id="heading">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <p id="title">e-Book</p>
-        <p id="subtitle">我的订单</p>
+        <p id="subtitle">我的购买统计</p>
         <el-button type="text" class="head_nav_button"><a href="#">退出登录</a></el-button>
         <el-button type="text" class="head_nav_button"><a href="#">我的订单</a></el-button>
         <el-button type="text" class="head_nav_button"><a href="#">购物车</a></el-button>
@@ -13,13 +13,16 @@
 
     <br/>
 
-    <el-input
-      v-model="search"
-      size="medium"
-      clearable
-      placeholder="输入书名关键字搜索书籍">
-      <i slot="prefix" class="el-input__icon el-icon-search"></i>
-    </el-input>
+    <div class="block">
+      <span class="demonstration">请选择时间范围：</span>
+      <el-date-picker
+        v-model="value6"
+        type="daterange"
+        range-separator="至"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期">
+      </el-date-picker>
+    </div>
 
     <el-table
       :data="tableData.filter(data => !search || data.bookname.toLowerCase().includes(search.toLowerCase()))"
